@@ -1,0 +1,62 @@
+Private Sub btnAlt_Buscar_Click()
+'---------------------------------- >> CONSULTA POR ID' << ----------------------------------------------
+
+
+
+btnAlterar.Enabled = True 'Irá ativar meu botão de alterção caso haja uma pesquisa
+
+
+'------Caso todos os campos do formulario estejam em branco, acusar erro --------
+If txtAlt_Id = "" And txtAlt_Nome = "" And txtAlt_Setor = "" And txtAlt_Cpf = "" And txtAlt_Sexo = "" And txtAlt_Email = "" And txtAlt_Telefone = "" And txtAlt_Endereco = "" And txtAlt_Complemento = "" And txtAlt_Bairro = "" And txtAlt_Nome = "" And txtAlt_Cidade = "" And txtAlt_Cep = "" And txtAlt_Uf = "" Then
+     
+       MsgBox "Fomulário em branco, preencha os dados para alteração", vbCritical, "!!! ATENÇÃO !!!"
+   
+        btnAlterar.Enabled = False 'Desabilita botão de alterar caso não tenha dados inseridos nos campos
+        
+Else ' caso a pesquisa seja concluida
+    
+
+Dim lin As Integer 'Lin = Linha
+
+lin = 3 'Lin == 3, pois minhas colunas só tem dados a partir da linha 3
+
+    
+ If txtAlt_Id = "" And txtAlt_Cpf = "" Then 'Se o valor do Id for nulo na hora da consulta, emitir erro
+   MsgBox "Digite Id ou CPF Para Realizar Uma Consulta", vbCritical, "GFP - !!! ATENÇÃO !!! "
+    btnAlterar.Enabled = False
+    Else ' Senão prosseguir o programa
+    
+     Do Until Sheets("PlanAdvogados").Cells(lin, 1).Value = Empty And btnAlterar.Enabled = False 'Realizar Loop na coluna de Id, até célula em branco
+            If Sheets("PlanAdvogados").Cells(lin, 1).Value = txtAlt_Id.Text Or Sheets("PlanAdvogados").Cells(lin, 5).Value = txtAlt_Cpf.Text Then  'Se o Id inserido corresponder com o da coluna
+                                                                            'da planilha, trazer todos os dados existentes
+                lblAlt_Id = Sheets("PlanAdvogados").Cells(lin, 1).Value
+                txtAlt_Id.Value = Sheets("PlanAdvogados").Cells(lin, 1).Value
+                txtAlt_Nome.Value = Sheets("PlanAdvogados").Cells(lin, 2).Value
+                txtAlt_Nasc.Value = Sheets("PlanAdvogados").Cells(lin, 3).Value
+                txtAlt_Setor.Value = Sheets("PlanAdvogados").Cells(lin, 4).Value
+                txtAlt_Cpf.Value = Sheets("PlanAdvogados").Cells(lin, 5).Value
+                txtAlt_Sexo.Value = Sheets("PlanAdvogados").Cells(lin, 6).Value
+                txtAlt_Email.Value = Sheets("PlanAdvogados").Cells(lin, 7).Value
+                txtAlt_Telefone.Value = Sheets("PlanAdvogados").Cells(lin, 8).Value
+                txtAlt_Endereco.Value = Sheets("PlanAdvogados").Cells(lin, 9).Value
+                txtAlt_Complemento.Value = Sheets("PlanAdvogados").Cells(lin, 10).Value
+                txtAlt_Bairro.Value = Sheets("PlanAdvogados").Cells(lin, 11).Value
+                txtAlt_Cidade.Value = Sheets("PlanAdvogados").Cells(lin, 12).Value
+                txtAlt_Cep.Value = Sheets("PlanAdvogados").Cells(lin, 13).Value
+                txtAlt_Uf.Value = Sheets("PlanAdvogados").Cells(lin, 14).Value
+                
+                MsgBox "Consulta Efeutada Com Sucesso", vbInformation, "GFP - Fomulário de Consultas" 'emitir exito
+                
+                
+                Exit Do ' fim do Para
+                
+                    
+            End If 'Fim do desvio de Fluxo
+        lin = lin + 1 'Incremento das linhas
+    Loop
+  End If
+
+End If
+
+End Sub
+

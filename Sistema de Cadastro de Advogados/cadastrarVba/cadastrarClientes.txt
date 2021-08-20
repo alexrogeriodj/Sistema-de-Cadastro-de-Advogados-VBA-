@@ -1,0 +1,147 @@
+Private Sub btnCadastrar_Click()
+Label46 = Now
+'------------------------------------- Não permitir Dados Em Branco --------------------------------------
+
+ 
+       If txtCad_Id = "" Then
+            MsgBox "Preencha o campo ID, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+        ElseIf txtCad_Nome = "" Then
+            MsgBox "Preencha o campo  Nome, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+        ElseIf txtCad_Nasc = "" Then
+            MsgBox "Preencha o campo Data Nasc, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+        ElseIf txtCad_Profissao = "" Then
+            MsgBox "Preencha o campo Setor, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+         ElseIf txtCad_Cpf = "" Then
+            MsgBox "Preencha o campo CPF, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+         ElseIf txtCad_Sexo = "" Then
+            MsgBox "Preencha o campo Sexo, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+         ElseIf txtCad_Email = "" Then
+            MsgBox "Preencha o campo Email, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+         ElseIf txtCad_Telefone = "" Then
+            MsgBox "Preencha o campo Telefone, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+         ElseIf txtCad_Endereco = "" Then
+            MsgBox "Preencha o campo Endereço, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+         ElseIf txtCad_Cidade = "" Then
+            MsgBox "Preencha o campo Cidade, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+        ElseIf txtCad_Cep = "" Then
+            MsgBox "Preencha o campo de CEP, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+         ElseIf txtCad_Uf = "" Then
+            MsgBox "Preencha o campo UF, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+        ElseIf txtCad_Total = "" Then
+            MsgBox "Preencha o campo R$ Total, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+            ElseIf txtCad_FormPag = "" Then
+            MsgBox "Preencha o campo Forma de Pagamento, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+       ElseIf txtCad_Parcelas = "" Then
+            MsgBox "Preencha o campo de Parcelas, dado Obrigatório ", vbCritical, "Preencha os campos obrigatórios"
+            txtCad_Id.SetFocus
+            Exit Sub
+                    
+        Else
+                                                        
+        
+        Dim lastrow As Long 'Last Row = Ultima linha
+        
+        lastrow = Worksheets("PlanClientes").Cells(Worksheets("PlanClientes").Rows.Count, 1).End(xlUp).Row + 1
+        'Minha variavel recem criada, vai receber minha planilha 1(PlanAdvogados) = LastRow = Worksheets("Plan1")
+        'Vai contar minhas celulas na coluna 1 = .Cells(Worksheets("Plan1").Rows.Count, 1)
+        'Após ele vai até a ultima linha e vai subir, e em seguida desce um linha = Rows.Count, 1).End(xlUp).Row + 1
+        
+        'Onde as celulas de 1-14 vão receber os respesctivos valores inseridos nos campos de texto declarados
+        
+         Range("E1").Select
+        
+        linha = 3
+        
+        While ActiveCell <> Empty
+        
+            Cells(linha, 5).Select
+            
+            If ActiveCell = Me.txtCad_Cpf Then
+            
+            MsgBox "CPF já existente no Banco de Dados", vbCritical, "!!! ATENÇÃO !!! "
+            
+            Me.txtCad_Cpf = Empty
+            
+            Exit Sub
+            End If
+            
+            linha = linha + 1
+        Wend
+        
+        Cells(lastrow, 1).Value = Me.txtCad_Id
+        Cells(lastrow, 2).Value = Me.txtCad_Nome
+        Cells(lastrow, 3).Value = Me.txtCad_Nasc
+        Cells(lastrow, 4).Value = Me.txtCad_Profissao
+        Cells(lastrow, 5).Value = Me.txtCad_Cpf
+        Cells(lastrow, 6).Value = Me.txtCad_Sexo
+        Cells(lastrow, 7).Value = Me.txtCad_Email
+        Cells(lastrow, 8).Value = Me.txtCad_Telefone
+        Cells(lastrow, 9).Value = Me.txtCad_Endereco
+        Cells(lastrow, 10).Value = Me.txtCad_Complemento
+        Cells(lastrow, 11).Value = Me.txtCad_Bairro
+        Cells(lastrow, 12).Value = Me.txtCad_Cidade
+        Cells(lastrow, 13).Value = Me.txtCad_Cep
+        Cells(lastrow, 14).Value = Me.txtCad_Uf
+        Cells(lastrow, 15).Value = Me.txtCad_NProcesso
+        Cells(lastrow, 16).Value = Me.txtCad_Total
+        Cells(lastrow, 17).Value = Me.txtCad_FormPag
+        Cells(lastrow, 18).Value = Me.txtCad_Parcelas
+        
+        Columns.AutoFit 'Para ajustar/identar as colunas na planilha
+        MsgBox "Cadastro efetuado com sucesso", vbInformation, "Cadastro de Advogados"
+        
+        'Após preencher os campos, para eles limparem automaticament
+        
+        Me.lblCad_Id = ""
+        Me.txtCad_Id.Value = ""
+        Me.txtCad_Nome.Value = ""
+        Me.txtCad_Nasc.Value = ""
+        Me.txtCad_Profissao.Value = ""
+        Me.txtCad_Cpf.Value = ""
+        Me.txtCad_Sexo.Value = ""
+        Me.txtCad_Email.Value = ""
+        Me.txtCad_Telefone.Value = ""
+        Me.txtCad_Endereco.Value = ""
+        Me.txtCad_Complemento.Value = ""
+        Me.txtCad_Bairro.Value = ""
+        Me.txtCad_Cidade.Value = ""
+        Me.txtCad_Cep.Value = ""
+        Me.txtCad_Uf.Value = ""
+        Me.txtCad_NProcesso = ""
+        Me.txtCad_Total = ""
+        Me.txtCad_FormPag = ""
+        Me.txtCad_Parcelas = ""
+         
+        
+    End If
+    
+End Sub
+

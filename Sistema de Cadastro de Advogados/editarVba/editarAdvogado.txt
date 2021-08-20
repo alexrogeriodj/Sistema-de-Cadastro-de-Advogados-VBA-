@@ -1,0 +1,68 @@
+Private Sub btnAlterar_Click()
+'------------------------- EDICAO DE DADOS' --------------------------
+
+'---- Caso o formulario esteja em branco emitir erro
+If txtAlt_Id = "" And txtAlt_Nome = "" And txtAlt_Setor = "" And txtAlt_Cpf = "" And txtAlt_Sexo = "" And txtAlt_Email = "" And txtAlt_Telefone = "" And txtAlt_Endereco = "" And txtAlt_Complemento = "" And txtAlt_Bairro = "" And txtAlt_Nome = "" And txtAlt_Cidade = "" And txtAlt_Cep = "" And txtAlt_Uf = "" Then
+    
+    MsgBox "Fomulário em branco, preencha os dados para alteração", vbCritical, "!!! ATENÇÃO !!!"
+   
+'--- ---
+ 
+Else ' senao
+
+    Dim empFound As Range 'cria minha variavel para ler as celulas
+ 
+
+With Range("Id") ' celulas da coluna ID (A)
+
+    Set empFound = .Find(Me.txtAlt_Id.Value)
+
+        With Range(empFound.Address)
+        
+        'Irá preencher os campos
+        .Offset(0, 1) = Me.txtAlt_Nome
+        .Offset(0, 2) = Me.txtAlt_Nasc
+        .Offset(0, 3) = Me.txtAlt_Setor
+        .Offset(0, 4) = Me.txtAlt_Cpf
+        .Offset(0, 5) = Me.txtAlt_Sexo
+        .Offset(0, 6) = Me.txtAlt_Email
+        .Offset(0, 7) = Me.txtAlt_Telefone
+        .Offset(0, 8) = Me.txtAlt_Endereco
+        .Offset(0, 9) = Me.txtAlt_Complemento
+        .Offset(0, 10) = Me.txtAlt_Bairro
+        .Offset(0, 11) = Me.txtAlt_Cidade
+        .Offset(0, 12) = Me.txtAlt_Cep
+        .Offset(0, 13) = Me.txtAlt_Uf
+    
+        On Error GoTo 0
+        
+        Columns.AutoFit
+        
+        MsgBox "Atualização Realizada Com Sucesso!", vbInformation, "GFP - Alteração de Dado(s) de Advogado"
+        'deixar campos vazios após atualização
+        Me.lblAlt_Id = ""
+        Me.txtAlt_Id.Value = ""
+        Me.txtAlt_Nome.Value = ""
+        Me.txtAlt_Nasc.Value = ""
+        Me.txtAlt_Setor.Value = ""
+        Me.txtAlt_Cpf.Value = ""
+        Me.txtAlt_Sexo.Value = ""
+        Me.txtAlt_Email.Value = ""
+        Me.txtAlt_Telefone.Value = ""
+        Me.txtAlt_Endereco.Value = ""
+        Me.txtAlt_Complemento.Value = ""
+        Me.txtAlt_Bairro.Value = ""
+        Me.txtAlt_Cidade.Value = ""
+        Me.txtAlt_Cep.Value = ""
+        Me.txtAlt_Uf.Value = ""
+        
+        End With
+    
+End With
+
+ 
+End If
+    btnAlterar.Enabled = False
+    
+End Sub
+
